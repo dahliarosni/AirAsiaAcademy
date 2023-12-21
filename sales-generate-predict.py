@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import seaborn as sns
+import pickle
 
 
 st.write("# Simple Sales Advertidsing Prediction App")
@@ -24,12 +25,9 @@ st.subheader('User Input parameters')
 st.write(df)
 
 
+loaded_modellinear = pickle.load(open("AdvertisingRegression.h5", "rb"))
+prediction=loaded_modellinear.predict(df)
+
 st.subheader('Prediction')
 st.write(prediction)
 
-st.subheader('Prediction Probability')
-st.write(prediction_proba)
-
-loaded_modellinear = pickle.load(open("Salespred.h5", "rb"))
-TV=loaded_modellinear.predict(df)
-st.write(prediction_proba)
